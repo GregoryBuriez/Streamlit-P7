@@ -18,7 +18,7 @@ st.title('Implémentez un modèle de scoring')
 df = pd.read_csv("df_tabdashboard.csv", usecols=lambda col: col != 'TARGET', nrows=int(0.1 * pd.read_csv("df_tabdashboard.csv").shape[0]))  # Sélection de 10% des clients
 liste_id = df['SK_ID_CURR'].tolist()
 
-st.write(df.head(2))
+st.write(df.head(5))
 
 
 # Chargement du modèle
