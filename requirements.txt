@@ -1,0 +1,6 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+altair==4.2.0
+pandas_datareader
