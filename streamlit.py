@@ -130,7 +130,7 @@ if not filtered_df.empty:
     fig_annuity, ax_annuity = plt.subplots(figsize=(6, 6))
     ax_annuity.pie(annuity_sizes, labels=annuity_labels, colors=annuity_colors, autopct='%1.1f%%', startangle=90)
     ax_annuity.axis('equal')
-    ax_annuity.set_title("Répartition des clients par rapport à l'annuité")
+    ax_annuity.set_title("Répartition des clients par rapport à l'endettement")
 
     # Affichage du graphique du diagramme circulaire (INCOME_CREDIT_PERC) à l'aide de Streamlit
     st.pyplot(fig_annuity)
