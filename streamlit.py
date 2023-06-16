@@ -91,6 +91,8 @@ if search_input:
             # Gérer les erreurs de requête
             st.write("Erreur lors de la requête à l'API")
 
+## Interprétabilité de la prédiction ##
+
 st.write('## Interprétabilité du résultat')                            
 shap.initjs()   
 
@@ -107,7 +109,7 @@ if not X.empty:
     shap_values = explainer.shap_values(X)
 
     # Affichage du graphique SHAP
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(5, 5))
     shap.summary_plot(shap_values, features=X, plot_type='bar', max_display=10, color_bar=False, plot_size=(10, 10))            
     st.pyplot(fig)
 else:
