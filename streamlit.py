@@ -136,7 +136,7 @@ if not X.empty:
 
     # Affichage du graphique SHAP
     fig, ax = plt.subplots(figsize=(5, 5))
-    shap.summary_plot(shap_values, features=X, plot_type='bar', max_display=10, color_bar=False, plot_size=(5, 5))            
+    shap.summary_plot(shap_values, features=X, plot_type='bar', max_display=10, color_bar=False, plot_size=(10, 10))            
     st.pyplot(fig)
 else:
     st.write("Les données d'entrée sont vides.")
