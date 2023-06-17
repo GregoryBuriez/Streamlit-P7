@@ -108,6 +108,31 @@ if not X.empty:
     explainer = shap.TreeExplainer(model1)
     shap_values = explainer.shap_values(X)
 
+    # Affichage du texte expliquant la dépendance de la prédiction avec l'identifiant
+    st.write("L'interprétation de la prédiction peut varier en fonction de l'identifiant du client.")
+
+    # Appel de l'API pour chaque individu dans X
+    for i in range(len(X)):
+        client_id = X.iloc[i]['SK_ID_CURR']
+        response = requests.post(API_url, data={'client_id': client_id})
+
+        # Vérifier le statut de la réponse
+        if response.status_code == 200:
+            API_data = response.json()
+
+            # Vérifier si la prédiction existe dans les données renvoyées
+            if 'prediction' in API_data:
+                classe_predite = API_data['prediction']
+                if classe_predite == 1:
+                    etat = 'client à risque'
+                elif classe_predite == 0:
+                    etat = 'client peu risqué'
+                else:
+                    etat = 'Client non reconnu dans notre API'
+
+                # Afficher le résultat de l'interprétation pour chaque individu
+                st.markdown(f"<p>Interprétation pour le client avec l'identifiant {client_id} : {etat}</p>", unsafe_allow_html=True)
+
     # Affichage du graphique SHAP
     fig, ax = plt.subplots(figsize=(5, 5))
     shap.summary_plot(shap_values, features=X, plot_type='bar', max_display=10, color_bar=False, plot_size=(10, 10))            
