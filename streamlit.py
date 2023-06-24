@@ -123,8 +123,18 @@ if search_input != "" and search_input.isdigit():
     # Convertir la valeur en entier
     identifier = int(search_input)
 
-    # Générer le graphique d'interprétation locale
-    generate_local_interpretation_graph(identifier)
+    # Vérifier si filtered_df n'est pas vide
+    if not filtered_df.empty:
+        # Vérifier si l'identifiant existe dans filtered_df
+        if identifier in filtered_df['SK_ID_CURR'].values:
+            # Générer le graphique d'interprétation locale
+            generate_local_interpretation_graph(identifier)
+        else:
+            # Afficher un message d'erreur
+            st.write("Erreur : l'identifiant spécifié n'existe pas dans le dataframe.")
+    else:
+        # Afficher un message d'erreur
+        st.write("Erreur : aucun résultat trouvé pour l'identifiant spécifié.")
 else:
     # Afficher un message d'erreur
     st.write("Erreur : veuillez entrer un identifiant de client valide.")
