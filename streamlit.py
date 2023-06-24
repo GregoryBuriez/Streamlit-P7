@@ -198,4 +198,3 @@ if not filtered_df.empty:
         st.table(random_clients_info)
 else:
     st.write("Veuillez spécifier un identifiant de client valide dans la barre de recherche.")
-        st.table(random_clients_info)
